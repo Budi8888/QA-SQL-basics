@@ -1,0 +1,21 @@
+#Below are some details to check MySQL queries:
+#TEST 2 
+SELECT flight_flight_id, passenger_id FROM passenger p WHERE flight_flight_id IS NOT NULL AND passenger_id IS NOT NULL; #to make a choice        
+SELECT flight_flight_id, passenger_id FROM passenger p WHERE flight_flight_id IS NULL; #to return NULL flight_flight_id
+#TEST 3 
+UPDATE passenger SET flight_flight_id = 5749 WHERE passenger_id = 5;        
+SELECT flight_flight_id, passenger_id FROM passenger p WHERE p.passenger_id = 5; #now pID5 has the flight                                                                                             
+SELECT * FROM passenger p WHERE p.passenger_id = 5; #to double-check the flightID for the pID                                                                                                          
+#TEST 4  
+UPDATE passenger SET flight_flight_id = NULL WHERE passenger_id = 5;      
+SELECT flight_flight_id, passenger_id FROM passenger p WHERE p.passenger_id = 5; #to check in DB                                                                                                               
+SELECT * FROM passenger p WHERE p.passenger_id = 5; #to double-check in DB      
+#TEST 5 
+UPDATE passenger SET flight_flight_id = NULL WHERE passenger_id = 5;      
+DELETE FROM flight f WHERE f.flight_id = 5749;                                                          
+SELECT flight_flight_id, passenger_id FROM passenger p WHERE p.passenger_id = 5; #to check in DB                                                                                                          
+SELECT * FROM passenger p WHERE p.passenger_id = 5; #to double-check in DB      
+#TEST 6  
+SELECT flight_flight_id, passenger_id FROM passenger p WHERE flight_flight_id IS NOT NULL AND passenger_id IS NOT NULL;              
+#for current topic it's excessive but... could check flights for each passenger:                 
+SELECT passenger_id, COUNT(flight_flight_id) FROM passenger p WHERE flight_flight_id IS NOT NULL AND passenger_id IS NOT NULL GROUP BY p.passenger_id ORDER BY p.passenger_id;
